@@ -1,0 +1,88 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+}
+
+body{
+   margin: 0;
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+header{
+    background-color: orangered;
+    padding: 10px 20px;
+    color: #FFF;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+}
+a{
+    text-decoration: none;
+    color: #FFF;
+    padding: 0 20px;
+}
+a:hover{
+    text-decoration: none;
+    color: #210ce2;
+    padding: 0 23px;
+    transition: all.5s;
+}
+
+footer{
+    padding: 60px;
+    background-color: orangered;
+    color: #FFF;
+}
+
+/* Register User page Style  */
+h1{
+    text-align: center;
+    font-size: 24px;
+}
+h2{
+    text-align: center;
+    font-size: 17px;
+}
+#register-candidat-form{
+    padding: 20px;
+
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+    border-radius: .4rem;
+    box-shadow: 1px 1px 1px 4px #f0e9e9;
+
+}
+label{
+    display: block;
+    text-transform: capitalize;
+    color: #4b4848;
+    margin-bottom: 6px;
+}
+.form-group{
+    margin-bottom: 8px;
+}
+input, textarea{
+    display: block;
+    padding: 12px 18px;
+    border: 1px solid #b4afaf;
+    width: 100%;
+    border-radius: .4rem;
+    font-size: 16px;
+}
+button{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 8px 16px;
+    background-color: #f3886dfd;
+    color: #fff;
+    font-size: 16px;
+    border: 1px solid #b4afaf;
+    border-radius: .4rem;
+    cursor: pointer;
+}
+button:hover{
+    background-color: orangered;
+    transition: all .5s;
+}
+/* Register candidat page Style  */

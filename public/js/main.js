@@ -1,0 +1,1 @@
+console.log("Hello je suis le fichier js inclu fans template")

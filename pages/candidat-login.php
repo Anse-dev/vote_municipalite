@@ -1,18 +1,26 @@
 <?php
+session_start(); // Démarrage de la session
+
 require_once '../db.php';
+require_once "../functions.php";
+if (isset($_SESSION['candidate_id'])) {
+  header('Location: candidate-home'); // Redirigez vers la page d'accueil du candidat
+  exit();
+}
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $email = $_POST['email'];
   $password = $_POST['password'];
-  $query = "SELECT id, name, password_hash, email, description FROM Candidats WHERE email = :email";
-  $stmt = $pdo->prepare($query);
-  $stmt->execute(['email' => $email]);
-  $user = $stmt->fetch(PDO::FETCH_ASSOC);
-  if ($user && password_verify($password, $user["password_hash"])) {
-    header('Location: /pages/candidate-home.php');
-  } else {
-    $loginError = "Identifiants incorrects.";
-  }
+    // Authentification du candidat
+  $candidate = authenticateCandidate($email, $password);
 
+  if ($candidate) {
+      // Enregistrez l'ID du candidat dans la session
+      $_SESSION['candidate_id'] = $candidate['id'];
+      header('Location: candidate-home'); // Redirigez vers la page d'accueil du candidat
+      exit();
+  } else {
+      $loginError = "Identifiants invalides. Veuillez réessayer.";
+    }
 }
 
 
@@ -20,17 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
   <h1>Bienvenue sur la page de connexion du candidat</h1>
   <?php if (isset($loginError)): ?>
     <p>
@@ -44,6 +42,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </form>
   <p>Vous n'avez pas de compte ? <a href="/register-candidat"> Inscrivez-vous </a></p>
 
-</body>
-
-</html>
