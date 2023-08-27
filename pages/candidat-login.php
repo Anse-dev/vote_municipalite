@@ -35,9 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <?php echo $loginError; ?>
     </p>
   <?php endif; ?>
-  <form method="post" action="/pages/candidat-login.php">
-    <input type="email" name="email" placeholder="Adresse e-mail" required>
-    <input type="password" name="password" placeholder="Mot de passe" required>
+  <form id="register-candidat-form" method="post" action="candidat-login">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" name="email" placeholder="Adresse e-mail" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" placeholder="Mot de passe" required>
+     
+    </div>
     <button type="submit" name="login">Se connecter</button>
   </form>
   <p>Vous n'avez pas de compte ? <a href="/register-candidat"> Inscrivez-vous </a></p>

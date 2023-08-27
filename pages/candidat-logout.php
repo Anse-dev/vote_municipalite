@@ -6,6 +6,6 @@ session_unset();
 session_destroy();
 
 // Rediriger vers une page après la déconnexion (par exemple, la page d'accueil)
-header('Location: login-candidat');
+header('Location: candidat-login');
 exit();
 ?>

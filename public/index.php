@@ -11,20 +11,23 @@ switch ($page) {
   case '':
     include '../pages/home.php';
     break;
-  case 'register-candidat':
+  case 'candidat-register':
     include '../pages/candidat-register.php';
     break;
-  case 'login-candidat':
+  case 'candidat-login':
     include '../pages/candidat-login.php';
     break;
-  case 'logout-candidat':
+  case 'candidate-home':
+    include '../pages/candidate-home.php';
+    break;
+  case 'candidat-logout':
     include '../pages/candidat-logout.php';
     break;
-  case 'register-user':
-    include '../pages/register-user.php';
+  case 'user-register':
+    include '../pages/user-register.php';
     break;
-  case 'login-user':
-    include '../pages/login-user.php';
+  case 'user-login':
+    include '../pages/user-login.php';
     break;
   default:
     include '../pages/404.php';

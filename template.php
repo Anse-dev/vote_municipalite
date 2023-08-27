@@ -1,3 +1,5 @@
+<?php session_start(); // Démarrage de la session ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +13,23 @@
         <!-- Ajoutez votre en-tête commun ici -->
         <a href="/" class="logo">Voting System</a>
         <nav>
-            <a href="register-candidat" class="nav-link">Register candidat</a>
-            <a href="register-user" class="nav-link">Register User</a>
+            <a href="/" class="nav-link">Home</a>
+            <a href="/candidats" class="nav-link">Candidats</a>
+            <div class="call-action">
+
+                <a href="candidat-register" class="nav-link">candidat register</a>
+
+                <?php if (isset($_SESSION['candidate_id'])) : ?>
+                    <a href="candidat-logout" class="nav-link">logout</a>
+                <?php endif; ?>
+
+
+                <a href="candidat-login" class="nav-link">Candidat login</a>
+            </div>
+            <div class="call-action">
+                <a href="user-register" class="nav-link">User register</a>
+                <a href="user-login" class="nav-link">User login</a>
+            </div>
         </nav>
     </header>
     

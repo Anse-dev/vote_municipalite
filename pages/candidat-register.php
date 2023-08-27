@@ -1,36 +1,39 @@
 <?php
-//require_once '../db.php'; // Assurez-vous d'avoir ce fichier correctement configuré
-
+require_once '../db.php'; // Assurez-vous d'avoir ce fichier correctement configuré
+require_once '../functions.php';
 
 if ($_SERVER["REQUEST_METHOD"] === 'POST') {
-  $name = $_POST["name"];
-  $description = $_POST["description"];
-  $email = $_POST["email"];
-  $password = $_POST["password"];
-  //Hash du mot de passe 
-  $password_hash = password_hash($password, PASSWORD_DEFAULT);
-  //insertion dans la base de donnée 
-  $query = "INSERT INTO Candidats (name, description, email, password_hash,photo) VALUES (:name, :description, :email, :password_hash, :photo)";
-  $stmt = $pdo->prepare($query);
-  $stmt->execute([
-    'name' => $name,
-    'description' => $description,
-    'email' => $email,
-    'password_hash' => $password_hash,
-    'photo' => "test"
-  ]);
+ $name = $_POST['name'];
+ $description = $_POST['description'];
+ $email = $_POST['email'];
+ $password = $_POST['password'];
+ $isUsedEmail = isEmailUsed($email);
+ if($isUsedEmail){
+  $registerError=  "Email deja existant";
+ }else{
+  $bool=  registerCandidat($name, $email,$password,$description);
+  if($bool){
+   header('Location: candidat-login');
+   exit();
+  }else{
+   header('Location: candidat-register');
+   exit();
+  }
+ }
 
-  header('Location: /pages/candidat-login.php');
-  exit();
-
+ 
 }
-
 ?>
 
 
   <h1>Bienvenue sur la page d'inscription du candidat</h1>
   <h2>Inscription Candidat</h2>
-  <form id="register-candidat-form" method="post" action="/pages/candidat-register.php">
+  <?php if (isset($registerError)): ?>
+    <p>
+      <?php echo $registerError; ?>
+    </p>
+  <?php endif; ?>
+  <form id="register-candidat-form" method="post" action="candidat-register">
 
     <div class="form-group">
       <label for="name"> name </label>
